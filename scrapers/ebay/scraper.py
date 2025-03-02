@@ -1,5 +1,6 @@
 import re
 import time
+import random
 from typing import List
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
@@ -12,7 +13,8 @@ import urllib.parse
 
 from scrapers.base import Listing, Scraper, SCRAPER_API_KEY
 
-TIME_TO_WAIT_BETWEEN_REQUESTS = 30
+TIME_TO_WAIT_BETWEEN_REQUESTS = 0.5
+
 @dataclass
 class EbayScraper(Scraper):
     def get_listings(self) -> List[Listing]:

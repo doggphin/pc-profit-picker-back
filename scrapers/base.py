@@ -1,7 +1,7 @@
 import abc
 from dataclasses import dataclass
 from abc import ABC
-from typing import List
+from typing import Dict, List
 
 from dotenv import load_dotenv
 import os
@@ -15,6 +15,14 @@ class Listing:
     price : str
     image_url : str
     product_url : str
+
+    def to_dict(self) -> Dict[str, str]:
+        return {
+            "title" : self.title,
+            "price" : self.price,
+            "image_url" : self.image_url,
+            "product_url" : self.product_url
+        }
 
 
 @dataclass

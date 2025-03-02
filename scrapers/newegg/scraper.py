@@ -42,6 +42,9 @@ class NeweggScraper(Scraper):
                 print(title)
 
                 price = listing.find_element(By.CLASS_NAME, "price-current").text
+                price = price.replace("$", "")
+                price = price.replace(",", "")
+                price.strip()
                 print(price)
 
                 img_element = driver.find_element(By.CSS_SELECTOR, "a.item-img img")

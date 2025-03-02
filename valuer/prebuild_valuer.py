@@ -21,7 +21,7 @@ class PrebuildDeconstructor():
 
     def get_value(self) -> Dict[str, Listing]:
         """
-        Returns the name of each component in the pre-built PC and how much they're worth on ebay, in pennies.
+        Returns the name of each component in the pre-built PC and how much they're worth on ebay, and its listing.
         """
 
         # First, ask OpenAI to deconstruct the name of the PC into PC parts.
@@ -60,10 +60,13 @@ class PrebuildDeconstructor():
         # Next, take each of those parts and look up how much they're going for on ebay.
         component_resale_listings : Dict[str, Listing] = {}
         for component_type, component_name in components.items():
+            if component_name == None or component_name.strip() == "":
+                continue
+
             ebay_scraper = EbayScraper(component_name, 1)
             listings = ebay_scraper.get_listings()
 
-            component_resale_listings[component_type] = listings[0].price if len(listings) > 0 else 0
+            component_resale_listings[component_type] = listings[0]
         
         # Return the dictionary of part names to their listings on ebay.
         return component_resale_listings
