@@ -15,6 +15,8 @@ part_data = api.retrieve(partType)  # Get PartData instance
 part_json = part_data.to_json()   # Convert to JSON string
 part_dict = json.loads(part_json)  # Convert JSON string to Python dict
 
+print(part_dict)
+
 # Extract CPU parts from response
 parts = part_dict.get(partType, {})
 
