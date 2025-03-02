@@ -3,6 +3,11 @@ from dataclasses import dataclass
 from abc import ABC
 from typing import List
 
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+SCRAPER_API_KEY : str = os.getenv("SCRAPER_API_KEY")
 
 @dataclass
 class Listing:
@@ -15,6 +20,7 @@ class Listing:
 @dataclass
 class Scraper(ABC):
     item_to_search_for : str
+    limit : int = None
     
     @abc.abstractmethod
     def get_listings(self) -> List[Listing]:
