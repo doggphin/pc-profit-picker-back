@@ -31,11 +31,11 @@ class NeweggScraper(Scraper):
             proxied_url = f"http://api.scraperapi.com?api_key={scraper_api_key}&url={base_url}"
             driver.get(proxied_url)
 
-            WebDriverWait(driver, 10).until(
+            WebDriverWait(driver, 30).until(
                 lambda driver: driver.execute_script('return document.readyState') == 'complete'
             )
 
-            wait = WebDriverWait(driver, 10)
+            wait = WebDriverWait(driver, 30)
 
             # Scroll to the bottom to ensure that all content is loaded
             driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
@@ -66,4 +66,7 @@ class NeweggScraper(Scraper):
         if driver is not None:
             driver.close()
         
+        print("Priced Listings:")
+        print(priced_listings)
+
         return priced_listings
