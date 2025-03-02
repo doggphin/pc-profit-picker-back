@@ -8,6 +8,8 @@ from typing import List
 class Listing:
     title : str
     price : str
+    image_url : str
+    product_url : str
 
 
 @dataclass
