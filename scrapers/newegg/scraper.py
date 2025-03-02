@@ -9,13 +9,11 @@ from selenium.webdriver.support import expected_conditions as EC
 from dataclasses import dataclass
 import json
 
-from scrapers.listing import Listing
+from scrapers.listing import Listing, Scraper
 
 
 @dataclass
-class NeweggScraper():
-    item_to_search_for : str
-
+class NeweggScraper(Scraper):
     def get_listings(self) -> List[Listing]:
         service = Service(ChromeDriverManager().install())
         driver = webdriver.Chrome(service=service)
